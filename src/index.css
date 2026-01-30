@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 20% 98%;
+    --foreground: 30 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 15%;
+
+    --primary: 40 60% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 30% 96%;
+    --secondary-foreground: 30 10% 25%;
+
+    --muted: 45 15% 94%;
+    --muted-foreground: 30 8% 45%;
+
+    --accent: 40 55% 92%;
+    --accent-foreground: 40 60% 35%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 40 60% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom semantic tokens */
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 142 50% 94%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 38 80% 94%;
+    
+    --info: 210 80% 55%;
+    --info-foreground: 0 0% 100%;
+    --info-muted: 210 70% 94%;
+    
+    --pending: 45 80% 50%;
+    --pending-foreground: 30 10% 15%;
+    --pending-muted: 45 60% 94%;
+
+    /* Document types */
+    --doc-pdf: 0 72% 51%;
+    --doc-docx: 217 91% 60%;
+    --doc-xlsx: 142 70% 45%;
+    --doc-txt: 210 10% 55%;
+    
+    /* Jurisdiction colors */
+    --jurisdiction-uae: 40 60% 50%;
+    --jurisdiction-uk: 210 80% 55%;
+    --jurisdiction-us: 0 72% 51%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 30 10% 35%;
+    --sidebar-primary: 40 60% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 55% 94%;
+    --sidebar-accent-foreground: 40 60% 35%;
+    --sidebar-border: 40 20% 92%;
+    --sidebar-ring: 40 60% 50%;
+
+    /* Golden gradient for special elements */
+    --gradient-gold: linear-gradient(135deg, hsl(40 60% 55%), hsl(35 70% 45%));
+    --gradient-gold-subtle: linear-gradient(135deg, hsl(40 55% 96%), hsl(35 45% 92%));
+  }
+
+  .dark {
+    --background: 30 15% 8%;
+    --foreground: 45 20% 95%;
+
+    --card: 30 12% 12%;
+    --card-foreground: 45 20% 95%;
+
+    --popover: 30 12% 12%;
+    --popover-foreground: 45 20% 95%;
+
+    --primary: 40 60% 55%;
+    --primary-foreground: 30 10% 10%;
+
+    --secondary: 30 10% 18%;
+    --secondary-foreground: 45 20% 90%;
+
+    --muted: 30 10% 18%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 30 12% 20%;
+    --accent-foreground: 40 60% 70%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 12% 20%;
+    --input: 30 12% 20%;
+    --ring: 40 60% 55%;
+
+    --sidebar-background: 30 12% 10%;
+    --sidebar-foreground: 45 20% 90%;
+    --sidebar-primary: 40 60% 55%;
+    --sidebar-primary-foreground: 30 10% 10%;
+    --sidebar-accent: 30 15% 18%;
+    --sidebar-accent-foreground: 40 60% 70%;
+    --sidebar-border: 30 12% 18%;
+    --sidebar-ring: 40 60% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .sidebar-nav-item {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200;
+    @apply text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground;
+  }
+
+  .sidebar-nav-item.active {
+    @apply bg-primary text-primary-foreground shadow-sm;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+
+  .status-compliant {
+    @apply bg-[hsl(var(--success-muted))] text-[hsl(var(--success))];
+  }
+
+  .status-non-compliant {
+    @apply bg-red-50 text-red-600;
+  }
+
+  .status-pending {
+    @apply bg-[hsl(var(--pending-muted))] text-[hsl(var(--pending))];
+  }
+
+  .status-not-assessed {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  .card-elevated {
+    @apply bg-card rounded-xl border shadow-sm transition-shadow hover:shadow-md;
+  }
+
+  .table-header {
+    @apply bg-muted/50 text-muted-foreground text-xs font-semibold uppercase tracking-wide;
+  }
+
+  .btn-primary-gold {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm;
+  }
+
+  .input-search {
+    @apply bg-background border-border focus:ring-2 focus:ring-primary/20 focus:border-primary;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .gradient-gold-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
